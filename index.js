@@ -1,27 +1,41 @@
+"use strict";
+
 /*
-Написати функцію, яка приймає масив чисел
-і повертає true, якщо в цьому масиві є два однакових числа поспіль
-Якщо не має - повертає false, якщо масив порожній - теж повертає false
+1)написати фукцію стрілку, яка приймає джерельний масив
+і повертає масив з двох значень,
+які є мінімальним і максимальним значенням джерельного масиву
+якщо джерельний масив порожній, то функція повертає порожній масив
+*/
 
+const getNewArr = (arr) => {
+  return arr.length === 0 ? arr : [Math.min(...arr), Math.max(...arr)];
+};
 
-// [1,2,3,4,5]->false
-// [1,2,2,3,2]->true
- */
+console.log(getNewArr([2, 5, 7, 3, 33, 5, 4, 3, 9]));
+console.log(getNewArr([]));
 
-/**
- * 
- * @param {[number]} arr 
- * @returns {boolean}
- */
-function hasTwoIdenticalNumbers(arr) {
-  if (arr.length === 0) return false;
-  for (let index = 0; index < arr.length; index++) {
-    if (arr[index] === arr[index + 1]) return true;
-  }
-  return false;
+/*
+2)написати функцію стрілку, яка приймає безліч аргументів
+і повертає результат їх множення, якщо аргументів не має - повертає null
+*/
+
+const getMultiplication = (...args) => {
+    return args.length === 0 ? null : args.reduce((accumulator, currentValue) => accumulator * currentValue)
+};
+
+console.log(getMultiplication());
+console.log(getMultiplication(3, 3, 4, 5, 6, null, 2));
+console.log(getMultiplication(2, 3));
+
+/*
+3)переписати функцію, що нижче на функцію стрілку
+function askUser(quetion){
+const userInput = confirm(quetion);
+if(userInput){
+return 'ok';
 }
+return 'error';
+}
+*/
 
-// console.log(hasTwoIdenticalNumbers([1,2,2,3,2]));
-// console.log(hasTwoIdenticalNumbers([1,2,3,4,5]));
-// console.log(hasTwoIdenticalNumbers([2,4,5,6,4,6]));
-// console.log(hasTwoIdenticalNumbers([]));
+const askUser = (quetion) => confirm(quetion) ? 'ok' : 'error'
