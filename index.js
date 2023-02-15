@@ -1,41 +1,60 @@
 "use strict";
 
-/*
-1)написати фукцію стрілку, яка приймає джерельний масив
-і повертає масив з двох значень,
-які є мінімальним і максимальним значенням джерельного масиву
-якщо джерельний масив порожній, то функція повертає порожній масив
-*/
+// const getFactorial = (number) => {
+//   if (typeof number !== "number") throw new TypeError("number must be number");
+//   if (number > 10000 || number < 0)
+//     throw new RangeError("number must be 0..10000");
+//   if (number === 0) return 1;
+//   return number * getFactorial(number - 1);
+// };
 
-const getNewArr = (arr) => {
-  return arr.length === 0 ? arr : [Math.min(...arr), Math.max(...arr)];
+// try {
+//   console.log(getFactorial(5));
+// } catch (error) {
+//   console.log(error);
+// } finally {
+//   console.log('finally')
+// }
+
+// const power = (base, exp) => {
+//   if (exp < 0) {
+//     return 1 / power(base, -exp);
+//   }
+//   if (exp === 0) return 1;
+//   return base * power(base, exp - 1);
+// };
+// console.log(power(4, -4));
+
+/*
+написати рекурсивну функцію, яка приймає число і повертає рядок з вкладених пар круглих дужок.
+кількість пар дорівнює прийнятому аргументу.
+якщо число(аргумет) менше 1 - повертаємо лише одну пару круглих дужок
+//pairBrickets(4) => '(((())))'
+
+//pairBrickets(-4) => '()'
+//pairBrickets('qwe') => throw
+*/
+const pairBrickets = (num) => {
+  if (typeof num !== "number") throw new TypeError("num must be number");
+  if (num < 0) return "()";
+  if (num === 0) return "";
+  return "(" + pairBrickets(num - 1) + ")";
 };
 
-console.log(getNewArr([2, 5, 7, 3, 33, 5, 4, 3, 9]));
-console.log(getNewArr([]));
+try {
+  console.log(pairBrickets(0));
+} catch (error) {
+  console.log(error);
+} finally {
+  console.log("finally");
+}
 
 /*
-2)написати функцію стрілку, яка приймає безліч аргументів
-і повертає результат їх множення, якщо аргументів не має - повертає null
-*/
+написати рекурсивну функцію, яка приймає два числа і повертає найбільший спільний дільник цих двох чисел
+// getDivider(24, 15) -> 3
+// getDivider(3, 3) -> 3
+// getDivider(7, 3) -> 1
 
-const getMultiplication = (...args) => {
-    return args.length === 0 ? null : args.reduce((accumulator, currentValue) => accumulator * currentValue)
-};
-
-console.log(getMultiplication());
-console.log(getMultiplication(3, 3, 4, 5, 6, null, 2));
-console.log(getMultiplication(2, 3));
-
-/*
-3)переписати функцію, що нижче на функцію стрілку
-function askUser(quetion){
-const userInput = confirm(quetion);
-if(userInput){
-return 'ok';
-}
-return 'error';
-}
-*/
-
-const askUser = (quetion) => confirm(quetion) ? 'ok' : 'error'
+Алгоритм Евкліда дозволяє знайти НСД двох натуральних чисел.
+Суть алгоритму Евкліда – два числа порівнюють і від більшого віднімають менше до тих пір, поки числа не стануть рівними. Число, якому вони стануть рівними, і є їх найбільший спільний дільник.
+ */
